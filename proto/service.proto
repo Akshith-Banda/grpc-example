@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package proto;
+
+message Thermostat {
+    int64 id = 1;
+    string name = 2;
+    int64 currentTemp = 3;
+    bool tempDsply = 4;
+    int64 group_id = 5;
+}
+
+message GetThermostat {
+    Thermostat thermostat_get = 1;
+}
+
+message Group {
+    string name = 1;
+}
+message ThermoGrp{
+    string thermo_name = 1;
+    string group_name = 2;
+}
+message Response {
+    string result = 1;
+}
+service Trial {
+   rpc Add_Thermo(Thermostat) returns (Response);
+   rpc Add_Group(Group) returns (Response);
+   rpc Add_Thermo_Grp(ThermoGrp) returns (Response);
+   rpc Delete_Group(Group) returns (Response);
+   rpc Get_Thermo(Thermostat) returns (GetThermostat);
+}
